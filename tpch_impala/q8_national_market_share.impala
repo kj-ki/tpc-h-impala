@@ -1,7 +1,7 @@
 -- the query
 insert overwrite table q8_national_market_share 
 select 
-  o_year, sum(case when nation = 'BRAZIL' then volume else 0.0 end) / sum(volume) as mkt_share
+  cast(o_year as string), sum(case when nation = 'BRAZIL' then volume else 0.0 end) / sum(volume) as mkt_share
 from 
   (
 select 

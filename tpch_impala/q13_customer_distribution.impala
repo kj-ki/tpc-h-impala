@@ -1,7 +1,7 @@
 -- the query
 insert overwrite table q13_customer_distribution
 select 
-  c_count, count(1) as custdist
+  cast(c_count as int), cast(count(1) as int) as custdist
 from 
   (select 
      c_custkey, count(o_orderkey) as c_count

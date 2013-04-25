@@ -1,7 +1,7 @@
 -- the query
 insert overwrite table q9_product_type_profit
 select 
-  nation, o_year, sum(amount) as sum_profit
+  nation, cast(o_year as string), sum(amount) as sum_profit
 from 
   (
 select 

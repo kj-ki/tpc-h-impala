@@ -32,11 +32,12 @@ while [ $trial -lt $NUM_OF_TRIALS ]; do
 			echo "ABOVE QUERY FAILED:$returncode"
 		fi
 
-		$TIME_CMD $IMPALA_CMD -q 'refresh' 2>&1 | tee -a $LOG_FILE | grep '^Time:'
-                returncode=${PIPESTATUS[0]}
-		if [ $returncode -ne 0 ]; then
-			echo "ABOVE QUERY FAILED:$returncode"
-		fi
+		# If you want to use old beta, enable below.
+		#$TIME_CMD $IMPALA_CMD -q 'refresh' 2>&1 | tee -a $LOG_FILE | grep '^Time:'
+                #returncode=${PIPESTATUS[0]}
+		#if [ $returncode -ne 0 ]; then
+		#	echo "ABOVE QUERY FAILED:$returncode"
+		#fi
 
 		echo "Running Impala query: $query" >> $LOG_FILE
 		$TIME_CMD $IMPALA_CMD --query_file=$BASE_DIR/tpch_impala/${query}.impala 2>&1 | tee -a $LOG_FILE | grep '^Time:'

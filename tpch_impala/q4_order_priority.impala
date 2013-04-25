@@ -7,7 +7,7 @@ from
 where 
   l_commitdate < l_receiptdate;
 INSERT OVERWRITE TABLE q4_order_priority 
-select o_orderpriority, count(1) as order_count 
+select o_orderpriority, cast(count(1) as int) as order_count 
 from 
   orders o join q4_order_priority_tmp t 
   on 

@@ -1,14 +1,14 @@
 -- the query
 insert overwrite table q21_tmp1
 select
-  l_orderkey, count(distinct l_suppkey), max(l_suppkey) as max_suppkey
+  l_orderkey, cast(count(distinct l_suppkey) as int), max(l_suppkey) as max_suppkey
 from
   lineitem
 group by l_orderkey;
 
 insert overwrite table q21_tmp2
 select
-  l_orderkey, count(distinct l_suppkey), max(l_suppkey) as max_suppkey
+  l_orderkey, cast(count(distinct l_suppkey) as int), max(l_suppkey) as max_suppkey
 from
   lineitem
 where
@@ -17,7 +17,7 @@ group by l_orderkey;
 
 insert overwrite table q21_suppliers_who_kept_orders_waiting
 select
-  s_name, count(1) as numwait
+  s_name, cast(count(1) as int) as numwait
 from
   (select s_name from
 (select s_name, t2.l_orderkey, l_suppkey, count_suppkey, max_suppkey 
